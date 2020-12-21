@@ -23,8 +23,7 @@
                     "MSI",
                     "DirectoryObjectOrGroup",
                     "Everyone"
-                ],
-                "defaultValue": "MSI"
+                ]
             },
             "exemptPrincipalIDs": {
                 "type": "array",
