@@ -6,8 +6,10 @@
 				"equals": "Microsoft.Authorization/roleAssignments"
 			},
 			{
-				"value": "[last(split(field('Microsoft.Authorization/roleAssignments/roleDefinitionId'),'/'))]",
-				"in": "[parameters('roleDefinitionIds')]"
+				"not": {
+					"field": "Microsoft.Authorization/roleAssignments/principalType",
+					"in": "[parameters('principalTypes')]"
+				}
 			},
 			{
 				"not": {
@@ -18,6 +20,6 @@
 		]
 	},
 	"then": {
-		"effect": "[parameters('effect')]"
+		"effect": "deny"
 	}
 }

@@ -1,0 +1,76 @@
+{
+  
+    "name": "allowed-principal-type-role-definitions", 
+    "properties": {
+        "displayName": "Allowed Principal Types",
+        "description": "This policy defines a allow list of principal types that can be used in IAM",
+        "mode": "All",
+        "parameters": {
+            "principalTypes": {
+                "type": "String",
+                "metadata": {
+                    "description": "The list of allowed principal types for role assignments.",
+                    "displayName": "Approved Principal Types"
+                },
+                "allowedValues": [
+                    "User",
+                    "Group",
+                    "ServicePrincipal",
+                    "Unknown",
+                    "DirectoryRoleTemplate",
+                    "ForeignGroup",
+                    "Application",
+                    "MSI",
+                    "DirectoryObjectOrGroup",
+                    "Everyone"
+                ],
+                "defaultValue": "MSI"
+            },
+            "exemptPrincipalIDs": {
+                "type": "array",
+                "metadata": {
+                    "displayName": "Exempt Principal IDs",
+                    "description": "Any Principal IDs included in this list will not have this Policy applied to them."
+                },
+                "defaultvalue": "None"
+            },
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy."
+                },
+                "allowedValues": [
+                    "Deny",
+                    "Disabled"
+                ],
+                "defaultValue": "Deny"
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Authorization/roleAssignments"
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Authorization/roleAssignments/principalType",
+                            "in": "[parameters('principalTypes')]"
+                        }
+                    },
+                    {
+                        "not": {
+                            "field": "Microsoft.Authorization/roleAssignments/principalId",
+                            "in": "[parameters('exemptPrincipalIDs')]"
+                        }
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effect')]"
+            }
+        }
+    }   
+}
