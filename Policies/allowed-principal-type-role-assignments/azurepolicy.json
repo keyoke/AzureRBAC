@@ -1,6 +1,6 @@
 {
   
-    "name": "allowed-principal-type-role-definitions", 
+    "name": "allowed-principal-type-role-assignments", 
     "properties": {
         "displayName": "Allowed Principal Types",
         "description": "This policy defines a allow list of principal types that can be used in IAM",
