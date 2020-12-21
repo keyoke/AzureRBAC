@@ -1,0 +1,24 @@
+{
+    "properties": {
+        "roleName": "deployment",
+        "description": "Custom Role Assigned to a Projects Deployment Identity",
+        "assignableScopes": [],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.Authorization/roleAssignments/delete",
+                    "Microsoft.Authorization/roleAssignments/write",
+                    "Microsoft.Authorization/roleAssignments/read",
+                    "Microsoft.ManagedIdentity/userAssignedIdentities/assign/action",
+                    "Microsoft.ManagedIdentity/userAssignedIdentities/delete",
+                    "Microsoft.ManagedIdentity/userAssignedIdentities/write",
+                    "Microsoft.ManagedIdentity/userAssignedIdentities/read",
+                    "Microsoft.ManagedIdentity/identities/read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
+}
