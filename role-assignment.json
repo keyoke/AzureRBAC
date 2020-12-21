@@ -22,7 +22,7 @@
       }
     },
     "variables": {
-      "roleAssignmentName": "[guid(parameters('principalId'), parameters('roleDefinitionID'), resourceGroup().id)]"
+      "roleAssignmentName": "[guid(parameters('principalId'), parameters('roleDefinitionID'), parameters('scope'))]"
     },
     "resources": [
       {
