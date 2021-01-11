@@ -30,8 +30,7 @@
                 "metadata": {
                     "displayName": "Exempt Principal IDs",
                     "description": "Any Principal IDs included in this list will not have this Policy applied to them."
-                },
-                "defaultvalue": "None"
+                }
             },
             "effect": {
                 "type": "String",
