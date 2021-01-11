@@ -12,13 +12,6 @@
                     "displayName": "Not Approved Role Definitions"
                 }
             },
-            "exemptPrincipalIDs": {
-                "type": "array",
-                "metadata": {
-                    "displayName": "Exempt Principal IDs",
-                    "description": "Any Principal IDs included in this list will not have this Policy applied to them."
-                }
-            },
             "effect": {
                 "type": "String",
                 "metadata": {
@@ -43,10 +36,6 @@
                     {
                         "value": "[last(split(field('Microsoft.Authorization/roleAssignments/roleDefinitionId'),'/'))]",
                         "in": "[parameters('roleDefinitionIds')]"
-                    },
-                    {
-                        "field": "Microsoft.Authorization/roleAssignments/principalId",
-                        "notIn": "[parameters('exemptPrincipalIDs')]"
                     }
                 ]
             },

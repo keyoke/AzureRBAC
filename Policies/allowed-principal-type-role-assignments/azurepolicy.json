@@ -25,13 +25,6 @@
                     "Everyone"
                 ]
             },
-            "exemptPrincipalIDs": {
-                "type": "array",
-                "metadata": {
-                    "displayName": "Exempt Principal IDs",
-                    "description": "Any Principal IDs included in this list will not have this Policy applied to them."
-                }
-            },
             "effect": {
                 "type": "String",
                 "metadata": {
@@ -56,10 +49,6 @@
                     {
                         "field": "Microsoft.Authorization/roleAssignments/principalType",
                         "notIn": "[parameters('principalTypes')]"
-                    },
-                    {
-                        "field": "Microsoft.Authorization/roleAssignments/principalId",
-                        "notIn": "[parameters('exemptPrincipalIDs')]"
                     }
                 ]
             },
