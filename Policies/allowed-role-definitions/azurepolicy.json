@@ -27,10 +27,11 @@
                     "description": "Enable or disable the execution of the policy."
                 },
                 "allowedValues": [
+                    "Audit",
                     "Deny",
                     "Disabled"
                 ],
-                "defaultValue": "Deny"
+                "defaultValue": "Audit"
             }
         },
         "policyRule": {
@@ -41,16 +42,12 @@
                         "equals": "Microsoft.Authorization/roleAssignments"
                     },
                     {
-                        "not": {
-                            "value": "[last(split(field('Microsoft.Authorization/roleAssignments/roleDefinitionId'),'/'))]",
-                            "in": "[parameters('roleDefinitionIds')]"
-                        }
+                        "value": "[last(split(field('Microsoft.Authorization/roleAssignments/roleDefinitionId'),'/'))]",
+                        "notIn": "[parameters('roleDefinitionIds')]"
                     },
                     {
-                        "not": {
-                            "field": "Microsoft.Authorization/roleAssignments/principalId",
-                            "in": "[parameters('exemptPrincipalIDs')]"
-                        }
+                        "field": "Microsoft.Authorization/roleAssignments/principalId",
+                        "notIn": "[parameters('exemptPrincipalIDs')]"
                     }
                 ]
             },

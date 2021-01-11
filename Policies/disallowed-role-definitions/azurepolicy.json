@@ -26,10 +26,11 @@
                     "description": "Enable or disable the execution of the policy."
                 },
                 "allowedValues": [
+                    "Audit",
                     "Deny",
                     "Disabled"
                 ],
-                "defaultValue": "Deny"
+                "defaultValue": "Audit"
             }
         },
         "policyRule": {
@@ -44,10 +45,8 @@
                         "in": "[parameters('roleDefinitionIds')]"
                     },
                     {
-                        "not": {
-                            "field": "Microsoft.Authorization/roleAssignments/principalId",
-                            "in": "[parameters('exemptPrincipalIDs')]"
-                        }
+                        "field": "Microsoft.Authorization/roleAssignments/principalId",
+                        "notIn": "[parameters('exemptPrincipalIDs')]"
                     }
                 ]
             },

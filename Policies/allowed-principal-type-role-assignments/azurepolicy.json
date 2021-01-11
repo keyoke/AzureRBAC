@@ -7,7 +7,7 @@
         "mode": "All",
         "parameters": {
             "principalTypes": {
-                "type": "String",
+                "type": "Array",
                 "metadata": {
                     "description": "The list of allowed principal types for role assignments.",
                     "displayName": "Approved Principal Types"
@@ -39,10 +39,11 @@
                     "description": "Enable or disable the execution of the policy."
                 },
                 "allowedValues": [
+                    "Audit",
                     "Deny",
                     "Disabled"
                 ],
-                "defaultValue": "Deny"
+                "defaultValue": "Audit"
             }
         },
         "policyRule": {
@@ -53,16 +54,12 @@
                         "equals": "Microsoft.Authorization/roleAssignments"
                     },
                     {
-                        "not": {
-                            "field": "Microsoft.Authorization/roleAssignments/principalType",
-                            "in": "[parameters('principalTypes')]"
-                        }
+                        "field": "Microsoft.Authorization/roleAssignments/principalType",
+                        "notIn": "[parameters('principalTypes')]"
                     },
                     {
-                        "not": {
-                            "field": "Microsoft.Authorization/roleAssignments/principalId",
-                            "in": "[parameters('exemptPrincipalIDs')]"
-                        }
+                        "field": "Microsoft.Authorization/roleAssignments/principalId",
+                        "notIn": "[parameters('exemptPrincipalIDs')]"
                     }
                 ]
             },
