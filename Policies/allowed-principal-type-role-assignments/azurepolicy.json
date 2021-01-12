@@ -3,7 +3,7 @@
     "name": "allowed-principal-type-role-assignments", 
     "properties": {
         "displayName": "Allowed Principal Types",
-        "description": "This policy defines a allow list of principal types that can be used in IAM",
+        "description": "This policy defines a allow list of principal types that can be used in IAM(correct evaluation mandates use of Microsoft.Authorization/roleAssignments.apiVersion >= 2018-09-01-preview)",
         "mode": "All",
         "parameters": {
             "principalTypes": {
