@@ -1,0 +1,9 @@
+{
+	"principalTypes": {
+		"type": "array",
+        "metadata": {
+            "description": "The list of allowed apiVersions for role assignments.",
+            "displayName": "Allowed apiVersions"
+        }
+	}
+}

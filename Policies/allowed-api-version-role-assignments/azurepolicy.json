@@ -1,0 +1,55 @@
+{
+  
+    "name": "allowed-api-version-role-assignments", 
+    "properties": {
+        "displayName": "Allowed apiVersions",
+        "description": "This policy defines a allow list of apiVersions that can be used when performing Role Assignments",
+        "mode": "All",
+        "parameters": {
+            "apiVersions": {
+                "type": "Array",
+                "metadata": {
+                    "description": "The list of allowed apiVersions for role assignments.",
+                    "displayName": "Allowed apiVersions"
+                },
+                "allowedValues": [
+                    "2020-04-01-preview",
+                    "2018-09-01-preview",
+                    "2018-01-01-preview",
+                    "2017-10-01-preview",
+                    "2015-07-01"
+                ]
+            },
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect",
+                    "description": "Enable or disable the execution of the policy."
+                },
+                "allowedValues": [
+                    "Audit",
+                    "Deny",
+                    "Disabled"
+                ],
+                "defaultValue": "Deny"
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Authorization/roleAssignments"
+                    },
+                    {
+                        "value":"[requestContext().apiVersion]",
+                        "notIn": "[parameters('apiVersions')]"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effect')]"
+            }
+        }
+    }   
+}
