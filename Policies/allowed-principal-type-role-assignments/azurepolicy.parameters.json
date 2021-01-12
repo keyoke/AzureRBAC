@@ -3,7 +3,7 @@
 		"type": "array",
         "metadata": {
             "description": "The list of allowed principal types for role assignments.",
-            "displayName": "Approved Principal Types"
+            "displayName": "Allowed Principal Types"
         }
 	}
 }

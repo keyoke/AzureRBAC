@@ -6,20 +6,12 @@
 				"equals": "Microsoft.Authorization/roleAssignments"
 			},
 			{
-				"not": {
-					"field": "Microsoft.Authorization/roleAssignments/principalType",
-					"in": "[parameters('principalTypes')]"
-				}
-			},
-			{
-				"not": {
-					"field": "Microsoft.Authorization/roleAssignments/principalId",
-					"in": "[parameters('exemptPrincipalIDs')]"
-				}
+				"field": "Microsoft.Authorization/roleAssignments/principalType",
+				"notIn": "[parameters('principalTypes')]"
 			}
 		]
 	},
 	"then": {
-		"effect": "deny"
+		"effect": "[parameters('effect')]"
 	}
 }
